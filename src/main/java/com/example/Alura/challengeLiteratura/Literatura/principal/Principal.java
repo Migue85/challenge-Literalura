@@ -86,13 +86,11 @@ public class Principal {
         if (datosBusqueda != null && !datosBusqueda.resultados().isEmpty()) {
             DatosLibro primerLibro = datosBusqueda.resultados().get(0);
 
-            // ***** INICIO DE LA CORRECCIÓN *****
-            // Se verifica si el libro encontrado tiene autores antes de procesarlo.
+            // verifica si el libro encontrado tiene autores antes de procesarlo.
             if (primerLibro.autores() == null || primerLibro.autores().isEmpty()) {
                 System.out.println("El libro '" + primerLibro.titulo() + "' no tiene un autor registrado y no puede ser procesado.");
-                return; // Se detiene la ejecución del método para este libro.
+                return; // detiene la ejecución del método para este libro.
             }
-            // ***** FIN DE LA CORRECCIÓN *****
 
             Optional<Libro> libroExistente = libroRepository.findByTituloIgnoreCase(primerLibro.titulo());
             if (libroExistente.isPresent()) {
