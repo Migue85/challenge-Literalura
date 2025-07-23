@@ -1,0 +1,31 @@
+// La clase principal debe estar en el paquete raíz para que Spring pueda encontrar los demás componentes.
+package com.example.Alura.challengeLiteratura.Literatura;
+
+import com.example.Alura.challengeLiteratura.Literatura.principal.Principal;
+import com.example.Alura.challengeLiteratura.Literatura.repository.AutorRepository;
+import com.example.Alura.challengeLiteratura.Literatura.repository.LibroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ChallengeLiteraluraApplication implements CommandLineRunner {
+
+    @Autowired
+    private LibroRepository libroRepository;
+    @Autowired
+    private AutorRepository autorRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(ChallengeLiteraluraApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Asegúrate de que las demás clases (Principal, Modelos, etc.) también usen
+        // la nueva estructura de paquetes en sus declaraciones e importaciones.
+        Principal principal = new Principal(libroRepository, autorRepository);
+        principal.muestraElMenu();
+    }
+}
