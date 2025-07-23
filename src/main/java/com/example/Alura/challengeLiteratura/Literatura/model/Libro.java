@@ -9,12 +9,10 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ***** INICIO DE LA CORRECCIÓN *****
-    // Se aumenta la longitud máxima de la columna a 1000 caracteres
+    // Se aumenta longitud máxima de la columna a 1000 caracteres
     // para admitir títulos de libros muy largos.
     @Column(unique = true, length = 1000)
     private String titulo;
-    // ***** FIN DE LA CORRECCIÓN *****
 
     private String idioma;
     private Double numeroDeDescargas;
@@ -22,7 +20,7 @@ public class Libro {
     @ManyToOne
     private Autor autor;
 
-    // Constructor por defecto requerido por JPA
+    // Constructor requerido por JPA
     public Libro() {}
 
     // Constructor para crear un libro a partir de los datos de la API
