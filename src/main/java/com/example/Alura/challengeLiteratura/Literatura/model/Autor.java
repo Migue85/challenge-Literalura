@@ -12,12 +12,10 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ***** INICIO DE LA CORRECCIÓN *****
     // Se aumenta la longitud máxima de la columna a 1000 caracteres
-    // para admitir nombres de autores muy largos.
+    // para admitir nombres de autores mas largos.
     @Column(unique = true, length = 1000)
     private String nombre;
-    // ***** FIN DE LA CORRECCIÓN *****
 
     private Integer anioNacimiento;
     private Integer anioFallecimiento;
@@ -25,10 +23,10 @@ public class Autor {
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Libro> libros = new ArrayList<>();
 
-    // Constructor por defecto requerido por JPA
+    // Constructor requerido por JPA
     public Autor() {}
 
-    // Constructor para crear un autor a partir de los datos de la API
+    // Constructor para crear al autor a partir de los datos de la API
     public Autor(DatosAutor datosAutor) {
         this.nombre = datosAutor.nombre();
         this.anioNacimiento = datosAutor.anioNacimiento();
@@ -75,7 +73,7 @@ public class Autor {
     }
 
     public void setLibros(List<Libro> libros) {
-        // Asigna este autor a cada libro de la lista
+        // Asigna autor a cada libro de la lista
         libros.forEach(libro -> libro.setAutor(this));
         this.libros = libros;
     }
