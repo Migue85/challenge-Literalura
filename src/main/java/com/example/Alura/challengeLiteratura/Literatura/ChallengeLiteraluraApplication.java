@@ -23,8 +23,6 @@ public class ChallengeLiteraluraApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Asegúrate de que las demás clases (Principal, Modelos, etc.) también usen
-        // la nueva estructura de paquetes en sus declaraciones e importaciones.
         Principal principal = new Principal(libroRepository, autorRepository);
         principal.muestraElMenu();
     }
